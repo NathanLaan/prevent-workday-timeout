@@ -1,0 +1,30 @@
+{
+  "name": "Prevent-Workday-Timeout",
+  "description": "Prevent session timeouts in Workday.",
+  "version": "0.9.8",
+  "manifest_version": 3,
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": ["cookies", "commands"],
+  "host_permissions": [
+    "https://wd5.myworkday.com/",
+    "http://wd5.myworkday.com/"
+  ],
+  "commands": {
+    "_execute_action": {
+			"suggested_key": {
+        "windows": "Ctrl+Shift+P",
+        "mac": "Command+Shift+P",
+        "chromeos": "Ctrl+Shift+P",
+        "linux": "Ctrl+Shift+P"
+			},
+			"description": "Prevent-Workday-Timeout",
+			"global": false		
+		}
+  },
+  "action": {
+    "default_title": "Prevent-Workday-Timeout",
+    "default_icon": "/images/extension-icon-stopped.png"
+  }
+}
