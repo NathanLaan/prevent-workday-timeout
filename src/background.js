@@ -26,7 +26,7 @@ const sleepTime = 30000;
 function incrementCookie(details, cookieValue) {
   details.value = (parseInt(cookieValue) + sleepTime).toString();
   chrome.cookies.set(details)
-    .then(cookie => clog("Update: " + details.name + " -> " + cookie.value))
+    //.then(cookie => clog("Update: " + details.name + " -> " + cookie.value))
     .catch(error => console.log(error));
 }
 
@@ -58,14 +58,14 @@ chrome.action.onClicked.addListener(function (tab) {
   try {
     if(running) {
       running = false;
-      clog("Stopping Prevent-Timeout-Workday.");
+      //clog("Stopping Prevent-Timeout-Workday.");
       clearInterval(intervalFunction);
       chrome.action.setTitle({ title: "Prevent-Workday-Timeout STOPPED" });
       chrome.action.setIcon({ path: "/images/extension-icon-stopped-128.png" })
         .catch(error => console.log(error));
     } else {
       running = true;
-      clog("Starting Prevent-Timeout-Workday.");
+      //clog("Starting Prevent-Timeout-Workday.");
       intervalFunction = setInterval(preventWorkdayTimeout, sleepTime);
       chrome.action.setTitle({ title: "Prevent-Workday-Timeout RUNNING"});
       chrome.action.setIcon({ path: "/images/extension-icon-running-128.png" })

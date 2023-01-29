@@ -23,7 +23,7 @@ A simple Google Chrome extension to prevent session timeouts on the Workday webs
 
 - [x] Clear Interval when browser is closed or addon is disabled.
 - [ ] User notification when cookie is not found. Change icon to red.
-- [ ] Remove all of the console debug statements.
+- [x] Remove all of the console debug statements.
 
 ## References
 
