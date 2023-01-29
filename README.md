@@ -6,7 +6,7 @@ By default, the Workday session is configured to timeout within ten minutes, and
 
 In testing, this extension has been found to reliably prevent your Workday session from timing out for a minimum of two hours, and up to a maximum of approximately eight hours. If your computer goes to sleep, or if Google Chrome is inactive for a significant period of time, the extension will no longer be able to keep your Workday session alive.
 
-This extension is not affiliated with [Workday](http://workday.com), or any Workday products or services.
+This extension is not affiliated with [Workday](http://workday.com), or any [Workday products or services](https://www.workday.com/en-us/legal/workday-trademark-usage-guidelines.html).
 
 ## Usage
 
