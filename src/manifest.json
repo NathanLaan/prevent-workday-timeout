@@ -8,8 +8,7 @@
   },
   "permissions": ["cookies", "commands"],
   "host_permissions": [
-    "https://wd5.myworkday.com/",
-    "http://wd5.myworkday.com/"
+    "https://wd5.myworkday.com/"
   ],
   "commands": {
     "_execute_action": {
