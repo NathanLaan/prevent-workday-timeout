@@ -1,15 +1,15 @@
 {
   "name": "Prevent-Workday-Timeout",
-  "description": "Prevent session timeouts in Workday.",
-  "version": "1.0.3",
+  "description": "Prevent session timeouts on the Workday website.",
+  "version": "1.0.4",
   "manifest_version": 3,
   "background": {
     "service_worker": "background.js"
   },
-  "permissions": ["cookies", "commands"],
   "host_permissions": [
     "https://wd5.myworkday.com/"
   ],
+  "permissions": ["cookies", "commands"],
   "commands": {
     "_execute_action": {
 			"suggested_key": {
