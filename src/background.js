@@ -6,7 +6,7 @@ function clog(m) {
 let running = false;
 let intervalFunction;
 const wdCookieURL = "https://wd5.myworkday.com";
-const sleepTime = 1000;
+const sleepTime = 30000;
 
 function incrementCookie(details, cookieValue) {
   details.value = (parseInt(cookieValue) + sleepTime).toString();
@@ -32,6 +32,9 @@ function preventWorkdayTimeout() {
   return true;
 }
 
+//
+// Listener for the Google Chrome extension button.
+//
 chrome.action.onClicked.addListener(function (tab) {
   try {
     if(running) {
@@ -58,7 +61,7 @@ chrome.action.onClicked.addListener(function (tab) {
 });
 
 //
-// TODO: clearInterval on browser close.
+// Run clearInterval on browser close.
 //
 chrome.runtime.onSuspend.addListener(() => {
   clearInterval(intervalFunction).catch(error => console.log(error));
