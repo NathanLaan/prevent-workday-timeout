@@ -1,4 +1,4 @@
-# Prevent-Timeout-Workday
+# Prevent-Workday-Timeout
 
 A simple Google Chrome extension to prevent session timeouts on the Workday website. Workday seems to log you out if you so much as blink. In testing, this extension works reliably to prevent your Workday session from timing out for a minimum of two hours, and up to a maximum of approximately eight hours. If your computer goes to sleep, or if Google Chrome is inactive for a significant period of time, the extension will no longer be able to keep your Workday session alive.
 
