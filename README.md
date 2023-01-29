@@ -28,8 +28,10 @@ This extension is not affiliated with [Workday](http://workday.com), or any [Wor
   ```
 
 - [x] Clear Interval when browser is closed or addon is disabled.
-- [ ] User notification when cookie is not found. Change icon to red.
 - [x] Remove all of the console debug statements.
+- [ ] User notification when cookie is not found. Change icon to red.
+- [ ] Automatically detect the Workday cookies and turn on the session timeout prevention.
+- [ ] Automatically stop the session timeout prevention when the Workday cookies are no longer detected.
 
 ## References
 
