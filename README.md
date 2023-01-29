@@ -30,5 +30,7 @@ A simple Google Chrome extension to prevent session timeouts on the Workday webs
 - [JavaScript setInterval clearInterval](https://developer.mozilla.org/en-US/docs/Web/API/setInterval)
 - [JavaScript Fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch)
 - [Chrome.Action.setTitle()](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/browserAction/setTitle)
-- [Host Permissions for Manifest v3](https://stackoverflow.com/questions/19124015/chrome-extension-no-permission-for-cookies-at-url)
+- [Host Permissions requirements for Manifest v3](https://stackoverflow.com/questions/19124015/chrome-extension-no-permission-for-cookies-at-url)
+- [Host Permissions documentation for Manifest v3](https://developer.chrome.com/docs/extensions/mv3/declare_permissions/)
+- [Cookies Permissions documentation for Manifest v3](https://developer.chrome.com/docs/extensions/reference/cookies/)
 - This project loosely follows [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
