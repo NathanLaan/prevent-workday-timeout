@@ -13,7 +13,7 @@ This extension is not affiliated with [Workday](http://workday.com), or any [Wor
 1. Install the [Prevent-Workday-Timeout extension from the Google Chrome web store](https://chrome.google.com/webstore/detail/prevent-workday-timeout/mcliokdljpofldmihgimfcnkmgifckki).
 2. Pin the Prevent-Timeout-Workday extension to the Google Chrome toolbar.
 3. Login to Workday.
-4. Click the Prevent-Timeout-Workday button in the Google Chrome toolbar. The icon colour should change from black to <span style="color:blue">blue</span>.
+4. Click the Prevent-Timeout-Workday button ![Prevent-Workday-Timeout Icon](/src/images/changes-black-32.png) in the Google Chrome toolbar. The icon colour should change from black to blue ![Prevent-Workday-Timeout Icon](/src/images/changes-blue-32.png).
 5. Click the Prevent-Timeout-Workday button again to stop the extension from keeping your Workday session alive. The icon colour should change to black.
 6. Logout from Workday. Or look away for a few seconds and Workday will log you out :)
 
@@ -38,6 +38,7 @@ This extension is not affiliated with [Workday](http://workday.com), or any [Wor
 ## References
 
 - Icons by [Radhe Icon - Flaticon](https://www.flaticon.com/free-icons/changes)
+- Blue Icon Colour: #0091FF, Red Icon Colour: #FF2500
 - [JavaScript setInterval clearInterval](https://developer.mozilla.org/en-US/docs/Web/API/setInterval)
 - [JavaScript Fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch)
 - [Chrome.Action.setTitle()](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/browserAction/setTitle)
