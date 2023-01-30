@@ -10,7 +10,7 @@ This extension is not affiliated with [Workday](http://workday.com), or any [Wor
 
 ## Usage
 
-1. Install the Google Chrome extension from the Google Chrome web store.
+1. Install the [Prevent-Workday-Timeout extension from the Google Chrome web store](https://chrome.google.com/webstore/detail/prevent-workday-timeout/mcliokdljpofldmihgimfcnkmgifckki).
 2. Pin the Prevent-Timeout-Workday extension to the Google Chrome toolbar.
 3. Login to Workday.
 4. Click the Prevent-Timeout-Workday button in the Google Chrome toolbar. The icon colour should change from black to <span style="color:blue">blue</span>.
