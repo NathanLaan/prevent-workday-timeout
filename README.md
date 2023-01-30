@@ -17,6 +17,8 @@ This extension is not affiliated with [Workday](http://workday.com), or any [Wor
 5. Click the Prevent-Timeout-Workday button again to stop the extension from keeping your Workday session alive. The icon colour should change to black.
 6. Logout from Workday. Or look away for a few seconds and Workday will log you out :)
 
+![Prevent-Workday-Timeout Extension in Google Chrome](/screenshot.png)
+
 ## Roadmap
 
 - [x] Narrow `host_permissions` to `https://wd5.workday.com`.
