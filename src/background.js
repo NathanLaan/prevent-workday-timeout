@@ -19,6 +19,9 @@ let running = false;
 let intervalFunction;
 const wdCookieURL = "https://wd5.myworkday.com";
 const sleepTime = 30000;
+const icon_red = "/images/changes-red-128.png";
+const icon_blue = "/images/changes-blue-128.png";
+const icon_black = "/images/changes-black-128.png";
 
 //
 // Increment the specified cookieValue by sleepTime.
@@ -61,14 +64,14 @@ chrome.action.onClicked.addListener(function (tab) {
       //clog("Stopping Prevent-Timeout-Workday.");
       clearInterval(intervalFunction);
       chrome.action.setTitle({ title: "Prevent-Workday-Timeout STOPPED" });
-      chrome.action.setIcon({ path: "/images/extension-icon-stopped-128.png" })
+      chrome.action.setIcon({ path: icon_red })
         .catch(error => console.log(error));
     } else {
       running = true;
       //clog("Starting Prevent-Timeout-Workday.");
       intervalFunction = setInterval(preventWorkdayTimeout, sleepTime);
       chrome.action.setTitle({ title: "Prevent-Workday-Timeout RUNNING"});
-      chrome.action.setIcon({ path: "/images/extension-icon-running-128.png" })
+      chrome.action.setIcon({ path: icon_blue })
         .catch(error => console.log(error));
     }
   } catch(err) {

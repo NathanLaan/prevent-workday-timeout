@@ -35,6 +35,7 @@ This extension is not affiliated with [Workday](http://workday.com), or any [Wor
 
 ## References
 
+- Icons by [Radhe Icon - Flaticon](https://www.flaticon.com/free-icons/changes)
 - [JavaScript setInterval clearInterval](https://developer.mozilla.org/en-US/docs/Web/API/setInterval)
 - [JavaScript Fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch)
 - [Chrome.Action.setTitle()](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/browserAction/setTitle)
