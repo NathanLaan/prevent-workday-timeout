@@ -1,6 +1,6 @@
-# Prevent-Workday-Timeout
+# ![Prevent-Workday-Timeout Icon](/src/images/changes-black-32.png) Prevent-Workday-Timeout
 
-![Prevent-Workday-Timeout Icon](/src/images/changes-black-32.png) A simple Google Chrome extension to prevent session timeouts on the Workday website.
+A simple Google Chrome extension to prevent session timeouts on the Workday website.
 
 By default, the Workday session is configured to timeout within ten minutes, and the Workday user interface includes a number of overlay windows which hide the warning message that your session is about to timeout.
 
