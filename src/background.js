@@ -5,11 +5,17 @@ function pad(num){
   return (num<10 ? "0" : "") + num;
 }
 //
-// Console log with date and time.
+// Return formatted timestamp: hh:mm:ss.
+//
+function getTimeFormatted() {
+  const d = new Date();
+  return `${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
+}
+//
+// Console log with timestamp and message.
 //
 function clog(m) {
-  const d = new Date();
-  console.log(`${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())} ${m}`);
+  console.log(getTimeFormatted() + m);
 }
 
 //
@@ -24,12 +30,27 @@ const icon_blue = "/images/changes-blue-128.png";
 const icon_black = "/images/changes-black-128.png";
 
 //
+// Called on successful incrementCookie(). Updates browser action tooltip.
+//
+function checkCookie(cookie) {
+  if(cookie) {
+    chrome.action.setTitle({ title: "Prevent-Workday-Timeout RUNNING: Last updated " + getTimeFormatted()});
+  } else {
+    //
+    // TODO: Change icon to red? Maybe need a 
+    // yellow icon for "running" but with "error"?
+    //
+    chrome.action.setTitle({ title: "Prevent-Workday-Timeout RUNNING: Unable to update Workday session " + getTimeFormatted()});
+  }
+}
+
+//
 // Increment the specified cookieValue by sleepTime.
 //
 function incrementCookie(details, cookieValue) {
   details.value = (parseInt(cookieValue) + sleepTime).toString();
   chrome.cookies.set(details)
-    //.then(cookie => clog("Update: " + details.name + " -> " + cookie.value))
+    .then(cookie => checkCookie(cookie))
     .catch(error => console.log(error));
 }
 
