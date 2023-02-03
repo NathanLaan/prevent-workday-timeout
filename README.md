@@ -34,6 +34,12 @@ This extension is not affiliated with [Workday](http://workday.com), or any [Wor
 - [ ] User notification when cookie is not found. Change icon to red.
 - [ ] Automatically detect the Workday cookies and turn on the session timeout prevention.
 - [ ] Automatically stop the session timeout prevention when the Workday cookies are no longer detected.
+- [ ] Background worker needs to be activated on action button click.
+  - There is a [bug where the action is not triggering the event](https://bugs.chromium.org/p/chromium/issues/detail?id=1316588Possible).
+  - Possible [solution is to connect to Workday tab](https://stackoverflow.com/questions/66618136/persistent-service-worker-in-chrome-extension).
+  - https://github.com/guest271314/persistent-serviceworker
+  - https://github.com/GoogleChrome/developer.chrome.com/issues/2590
+  - https://groups.google.com/a/chromium.org/g/chromium-extensions/c/LQ_VpMCpksw
 
 ## References
 
