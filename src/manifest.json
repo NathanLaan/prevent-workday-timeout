@@ -1,7 +1,7 @@
 {
   "name": "Prevent-Workday-Timeout",
   "description": "Prevent session timeouts on the Workday website.",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "manifest_version": 3,
   "background": {
     "service_worker": "background.js"
@@ -22,6 +22,12 @@
 			"global": false		
 		}
   },
+  "content_scripts": [
+    {
+      "matches": ["https://*.myworkday.com/*"],
+      "js": ["content.js"]
+    }
+  ],
   "action": {
     "default_title": "Prevent-Workday-Timeout",
     "default_icon": "/images/changes-black-128.png"

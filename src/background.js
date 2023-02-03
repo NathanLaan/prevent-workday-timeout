@@ -9,7 +9,7 @@ function pad(num){
 //
 function getTimeFormatted() {
   const d = new Date();
-  return `${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
+  return `${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())} `;
 }
 //
 // Console log with timestamp and message.
@@ -48,6 +48,7 @@ function checkCookie(cookie) {
 // Increment the specified cookieValue by sleepTime.
 //
 function incrementCookie(details, cookieValue) {
+  clog("incrementCookie: " + details);
   details.value = (parseInt(cookieValue) + sleepTime).toString();
   chrome.cookies.set(details)
     .then(cookie => checkCookie(cookie))
@@ -75,25 +76,33 @@ function preventWorkdayTimeout() {
   return true; // For async
 }
 
+function startPreventWorkdayTimeoutInterval() {
+  running = true;
+  //clog("Starting Prevent-Timeout-Workday.");
+  intervalFunction = setInterval(preventWorkdayTimeout, sleepTime);
+  chrome.action.setTitle({ title: "Prevent-Workday-Timeout RUNNING"});
+  chrome.action.setIcon({ path: icon_blue })
+    .catch(error => console.log(error));
+}
+
+function stopPreventWorkdayTimeoutInterval() {
+  running = false;
+  //clog("Stopping Prevent-Timeout-Workday.");
+  clearInterval(intervalFunction);
+  chrome.action.setTitle({ title: "Prevent-Workday-Timeout STOPPED" });
+  chrome.action.setIcon({ path: icon_red })
+    .catch(error => console.log(error));
+}
+
 //
 // Listener for the Google Chrome extension button.
 //
 chrome.action.onClicked.addListener(function (tab) {
   try {
     if(running) {
-      running = false;
-      //clog("Stopping Prevent-Timeout-Workday.");
-      clearInterval(intervalFunction);
-      chrome.action.setTitle({ title: "Prevent-Workday-Timeout STOPPED" });
-      chrome.action.setIcon({ path: icon_red })
-        .catch(error => console.log(error));
+      stopPreventWorkdayTimeoutInterval();
     } else {
-      running = true;
-      //clog("Starting Prevent-Timeout-Workday.");
-      intervalFunction = setInterval(preventWorkdayTimeout, sleepTime);
-      chrome.action.setTitle({ title: "Prevent-Workday-Timeout RUNNING"});
-      chrome.action.setIcon({ path: icon_blue })
-        .catch(error => console.log(error));
+      startPreventWorkdayTimeoutInterval();
     }
   } catch(err) {
     clog(err);
@@ -102,6 +111,32 @@ chrome.action.onClicked.addListener(function (tab) {
   }
   // NOT NEEDED return true;
 });
+
+
+chrome.runtime.onMessage.addListener((request, sender, callback) => {
+  switch (request.message) {
+    case 'prevent-timeout':
+      clog("Message Received: prevent-timeout URL: " + request.url);
+      callback();
+      break;
+    case 'client-load':
+      startPreventWorkdayTimeoutInterval();
+      clog("Message Received: client-load URL: " + request.url);
+      callback();
+      break;
+    default:
+      clog("Error - Unexpected Message: " + request.message);
+  }
+  /*
+   * Return true to keep response function in scope for async calls
+   * https://stackoverflow.com/questions/20077487/
+   */
+  return true;
+});
+
+//
+// https://stackoverflow.com/questions/66618136/persistent-service-worker-in-chrome-extension
+//
 
 //
 // Run clearInterval on browser close.
