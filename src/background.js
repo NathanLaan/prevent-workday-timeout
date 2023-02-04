@@ -140,7 +140,6 @@ chrome.runtime.onMessage.addListener((request, sender, callback) => {
     case 'update-workday-cookies':
       clog("Message Received: update-workday-cookies URL: " + request.url);
       setActionIconOn();
-      updateWorkdayCookies();
       if(!running) {
         startInterval();
       }
