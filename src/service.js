@@ -34,29 +34,13 @@ let intervalFunction;
 const sleepTime = 20000;
 
 //
-// Called on successful incrementCookie(). Updates browser action tooltip.
-//
-function checkCookie(cookie) {
-  if(cookie) {
-    chrome.action.setTitle({ title: "Prevent-Workday-Timeout RUNNING: Last updated " + getTimeFormatted()});
-  } else {
-    //
-    // TODO: Change icon to red? Maybe need a 
-    // yellow icon for "running" but with "error"?
-    //
-    chrome.action.setTitle({ title: "Prevent-Workday-Timeout RUNNING: Unable to update Workday session " + getTimeFormatted()});
-  }
-}
-
-//
 // Increment the specified cookieValue by sleepTime.
 //
-function updateCookie(details, cookieValue) {
-  details.value = (parseInt(cookieValue) + sleepTime).toString();
+function updateCookie(details, cookie) {
+  details.value = (parseInt(cookie.value) + sleepTime).toString();
   clog("updateCookie: " + details.name + " - " + details.value);
   chrome.cookies.set(details)
-    .then(cookie => checkCookie(cookie))
-    .catch(error => console.log(error));
+    .catch(error => cookieError(error));
   return true; // Needed for async
 }
 
