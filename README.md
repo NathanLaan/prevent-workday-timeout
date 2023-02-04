@@ -13,8 +13,8 @@ This extension is not affiliated with [Workday](http://workday.com), or any [Wor
 1. Install the [Prevent-Workday-Timeout extension from the Google Chrome web store](https://chrome.google.com/webstore/detail/prevent-workday-timeout/mcliokdljpofldmihgimfcnkmgifckki).
 2. Pin the Prevent-Timeout-Workday extension to the Google Chrome toolbar.
 3. Login to Workday.
-4. Click the Prevent-Timeout-Workday button ![Prevent-Workday-Timeout Icon](/src/images/changes-black-32.png) in the Google Chrome toolbar. The icon colour should change from black to blue ![Prevent-Workday-Timeout Icon](/src/images/changes-blue-32.png).
-5. Click the Prevent-Timeout-Workday button again to stop the extension from keeping your Workday session alive. The icon colour should change to black.
+4. The Prevent-Timeout-Workday button icon should change from black ![Prevent-Workday-Timeout Icon](/src/images/changes-black-32.png) to blue ![Prevent-Workday-Timeout Icon](/src/images/changes-blue-32.png).
+5. Click the Prevent-Timeout-Workday button to display the pop-up window. The pop-up doesn't do anything right now. In the future, it will display info on the Workday session.
 6. Logout from Workday. Or look away for a few seconds and Workday will log you out :)
 
 ![Prevent-Workday-Timeout Extension in Google Chrome](/screenshot.png)
@@ -49,6 +49,7 @@ This extension is not affiliated with [Workday](http://workday.com), or any [Wor
     - [ ] Test 2a: Does the background script receive the message from the client script?
     - [ ] Test 2b: Does the background script start the interval function?
     - [ ] Test 2c: Does the Workday session stay alive for at least one hour?
+  - [ ] Add Workday session info to the pop-up button.
 
 ## References
 
