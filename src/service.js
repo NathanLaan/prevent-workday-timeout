@@ -79,24 +79,6 @@ function updateWorkdayCookies() {
   return true; // Needed for async
 }
 
-//
-// Listener for the Google Chrome extension button.
-//
-// chrome.action.onClicked.addListener(function (tab) {
-//   try {
-//     if(running) {
-//       //stopPreventWorkdayTimeoutInterval();
-//     } else {
-//       //startPreventWorkdayTimeoutInterval();
-//     }
-//   } catch(err) {
-//     clog(err);
-//     clearInterval(intervalFunction);
-//     running = false;
-//   }
-//   // NOT NEEDED return true;
-// });
-
 function setActionIconOn() {
   chrome.action.setTitle({ title: "Prevent-Workday-Timeout RUNNING"});
   chrome.action.setIcon({ path: icon_blue })
