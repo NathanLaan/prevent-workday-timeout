@@ -31,15 +31,24 @@ This extension is not affiliated with [Workday](http://workday.com), or any [Wor
 
 - [x] Clear Interval when browser is closed or addon is disabled.
 - [x] Remove all of the console debug statements.
-- [ ] User notification when cookie is not found. Change icon to red.
-- [ ] Automatically detect the Workday cookies and turn on the session timeout prevention.
-- [ ] Automatically stop the session timeout prevention when the Workday cookies are no longer detected.
-- [ ] Background worker needs to be activated on action button click.
-  - There is a [bug where the action is not triggering the event](https://bugs.chromium.org/p/chromium/issues/detail?id=1316588Possible).
-  - Possible [solution is to connect to Workday tab](https://stackoverflow.com/questions/66618136/persistent-service-worker-in-chrome-extension).
-  - https://github.com/guest271314/persistent-serviceworker
-  - https://github.com/GoogleChrome/developer.chrome.com/issues/2590
-  - https://groups.google.com/a/chromium.org/g/chromium-extensions/c/LQ_VpMCpksw
+- [ ] User notifications. TBD.
+- [ ] Review, assess, and keep minimal number of console debug statements.
+- [ ] Issue: [Service worker script is inactive and not activating where the action button is clicked](https://bugs.chromium.org/p/chromium/issues/detail?id=1316588Possible) and [`Error: A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received`](https://stackoverflow.com/questions/72494154/a-listener-indicated-an-asynchronous-response-by-returning-true-but-the-messag) is generated when service worker script becomes inactive in between executing an event and returning an async result.
+  - [ ] Fix: Create client script on Workday domain tabs. Send message from content script to service script update cookies. Interval functions on content and service scripts. Content script activates service script and keeps it active.
+    - content -> load -> send: content-load
+    - content -> load -> startInterval
+    - content -> interval (30s) -> send: update-workday-cookies
+    - content -> unload -> send: content-unload
+    - service -> receive: update-workday-cookies -> startInterval if not running
+    - service -> receive: content-unload -> stopInterval
+  - [x] Test 1: Login to Workday while service worker is active.
+    - [x] Test 1a: Does the background script receive the message from the client script?
+    - [x] Test 1b: Does the background script start the interval function?
+    - [x] Test 1c: Does the Workday session stay alive for at least one hour?
+  - [ ] Test 2: Login to Workday while service worker is inactive.
+    - [ ] Test 2a: Does the background script receive the message from the client script?
+    - [ ] Test 2b: Does the background script start the interval function?
+    - [ ] Test 2c: Does the Workday session stay alive for at least one hour?
 
 ## References
 
