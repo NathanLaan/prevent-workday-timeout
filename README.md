@@ -34,7 +34,7 @@ This extension is not affiliated with [Workday](http://workday.com), or any [Wor
 - [ ] User notifications. TBD.
 - [ ] Review, assess, and keep minimal number of console debug statements.
 - [ ] Issue: [Service worker script is inactive and not activating where the action button is clicked](https://bugs.chromium.org/p/chromium/issues/detail?id=1316588Possible) and [`Error: A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received`](https://stackoverflow.com/questions/72494154/a-listener-indicated-an-asynchronous-response-by-returning-true-but-the-messag) is generated when service worker script becomes inactive in between executing an event and returning an async result.
-  - [ ] Fix: Create client script on Workday domain tabs. Send message from content script to service script update cookies. Interval functions on content and service scripts. Content script activates service script and keeps it active.
+  - [x] Fix: Create client script on Workday domain tabs. Send message from content script to service script update cookies. Interval functions on content and service scripts. Content script activates service script and keeps it active.
     - content -> load -> send: content-load
     - content -> load -> startInterval
     - content -> interval (30s) -> send: update-workday-cookies
