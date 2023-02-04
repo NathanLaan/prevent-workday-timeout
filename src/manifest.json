@@ -9,14 +9,14 @@
   "host_permissions": [
     "https://wd5.myworkday.com/"
   ],
-  "permissions": ["cookies", "commands"],
+  "permissions": ["cookies", "commands", "notifications"],
   "commands": {
     "_execute_action": {
 			"suggested_key": {
-        "windows": "Ctrl+Shift+P",
-        "mac": "Command+Shift+P",
-        "chromeos": "Ctrl+Shift+P",
-        "linux": "Ctrl+Shift+P"
+        "windows": "Ctrl+Shift+W",
+        "mac": "Command+Shift+W",
+        "chromeos": "Ctrl+Shift+W",
+        "linux": "Ctrl+Shift+W"
 			},
 			"description": "Prevent-Workday-Timeout",
 			"global": false		
@@ -30,7 +30,8 @@
   ],
   "action": {
     "default_title": "Prevent-Workday-Timeout",
-    "default_icon": "/images/changes-black-128.png"
+    "default_icon": "/images/changes-black-128.png",
+    "default_popup": "popup.html"
   },
   "icons": {
     "32": "/images/changes-black-32.png",
