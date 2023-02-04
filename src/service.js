@@ -27,7 +27,11 @@ const icon_blue = "/images/changes-blue-128.png";
 const icon_black = "/images/changes-black-128.png";
 let running = false;
 let intervalFunction;
-const sleepTime = 30000;
+//
+// Idle is 30s: 
+// https://developer.chrome.com/docs/extensions/mv3/service_workers/
+//
+const sleepTime = 20000;
 
 //
 // Called on successful incrementCookie(). Updates browser action tooltip.
