@@ -60,6 +60,17 @@ function updateCookie(details, cookieValue) {
   return true; // Needed for async
 }
 
+function cookieError(error) {
+  console.log(error);
+  chrome.notifications.create("prevent-workday-timeout-cookie-error", {
+    type: "basic",
+    iconUrl: icon_red,
+    title: "PWT: Error",
+    message: error,
+    priority: 2
+  });
+}
+
 //
 // Modify cookies to prevent session timeout. Function is run on interval timer.
 //
@@ -72,10 +83,10 @@ function updateWorkdayCookies() {
   const detailsSTM = { url: wdCookieURL, name: "SessionTimeoutMS" };
   chrome.cookies.get(detailsLUA)
     .then(cookie => updateCookie(detailsLUA, cookie.value))
-    .catch(error => console.log(error));
+    .catch(error => cookieError(error));
   chrome.cookies.get(detailsSTM)
     .then(cookie => updateCookie(detailsSTM, cookie.value))
-    .catch(error => console.log(error));
+    .catch(error => cookieError(error));
   return true; // Needed for async
 }
 
@@ -113,6 +124,13 @@ chrome.runtime.onMessage.addListener((request, sender, callback) => {
       callback();
       break;
     case 'content-load':
+      chrome.notifications.create("prevent-workday-timeout-content-load", {
+        type: "basic",
+        iconUrl: icon_blue,
+        title: "Prevent-Workday-Timeout",
+        message: "Workday website loaded",
+        priority: 2
+      });
       clog("Message Received: content-load URL: " + request.url);
       startInterval();
       callback();
