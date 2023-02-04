@@ -133,7 +133,7 @@ chrome.runtime.onMessage.addListener((request, sender, callback) => {
       }
       break;
     default:
-      clog("Error - Unexpected Message: " + request.message);
+      clog("Unexpected Message: " + request.message);
   }
   /*
    * Return true to keep response function in scope for async calls
