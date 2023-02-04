@@ -34,7 +34,7 @@ function preventWorkdayTimeout() {
   if(running) {
     // update-workday-cookies
     chrome.runtime.sendMessage({message: 'update-workday-cookies', url: location.href})
-      .then(clog("Message sent: update-workday-cookies"))
+      .then(clog("Message Sent: update-workday-cookies"))
       .catch(error => console.log(error));
     }
   return true; // For async
