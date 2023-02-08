@@ -50,7 +50,7 @@ function cookieError(error) {
     type: "basic",
     iconUrl: icon_red,
     title: "PWT: Error",
-    message: error,
+    message: error.message,
     priority: 2
   });
 }

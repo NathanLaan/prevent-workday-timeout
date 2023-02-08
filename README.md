@@ -62,3 +62,4 @@ This extension is not affiliated with [Workday](http://workday.com), or any [Wor
 - [Host Permissions documentation for Manifest v3](https://developer.chrome.com/docs/extensions/mv3/declare_permissions/)
 - [Cookies Permissions documentation for Manifest v3](https://developer.chrome.com/docs/extensions/reference/cookies/)
 - This project loosely follows [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
+- [i18n](https://developer.chrome.com/docs/extensions/reference/i18n/)
