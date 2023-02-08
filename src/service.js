@@ -36,8 +36,8 @@ const sleepTime = 20000;
 //
 // Increment the specified cookieValue by sleepTime.
 //
-function updateCookie(details, cookie) {
-  details.value = (parseInt(cookie.value) + sleepTime).toString();
+function updateCookie(details, cookieValue) {
+  details.value = (parseInt(cookieValue) + sleepTime).toString();
   clog("updateCookie: " + details.name + " - " + details.value);
   chrome.cookies.set(details)
     .catch(error => cookieError(error));
