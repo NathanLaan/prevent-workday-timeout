@@ -22,7 +22,7 @@ let intervalFunction;
 const sleepTime = 20000;
 
 /**
- * Log and notify the user about the specified error.
+ * Stop the interval, log the error, and notify the user about the error.
  * @param {Object} error - The error{name, message} to log and notify.
  */
 function captureError(error) {
