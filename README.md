@@ -29,7 +29,7 @@ This extension is not affiliated with [Workday](http://workday.com), or any [Wor
   ]
   ```
 
-- [x] Clear Interval when browser is closed or addon is disabled.
+- [x] Clear interval when browser is closed or addon is disabled.
 - [x] Remove all of the console debug statements.
 - [ ] User notifications. TBD.
 - [ ] Review, assess, and keep minimal number of console debug statements.
@@ -37,7 +37,7 @@ This extension is not affiliated with [Workday](http://workday.com), or any [Wor
   - [x] Fix: Create client script on Workday domain tabs. Send message from content script to service script update cookies. Interval functions on content and service scripts. Content script activates service script and keeps it active.
     - content -> load -> send: content-load
     - content -> load -> startInterval
-    - content -> interval (30s) -> send: update-workday-cookies
+    - content -> interval (20s) -> send: update-workday-cookies
     - content -> unload -> send: content-unload
     - service -> receive: update-workday-cookies -> startInterval if not running
     - service -> receive: content-unload -> stopInterval
@@ -49,7 +49,8 @@ This extension is not affiliated with [Workday](http://workday.com), or any [Wor
     - [ ] Test 2a: Does the background script receive the message from the client script?
     - [ ] Test 2b: Does the background script start the interval function?
     - [ ] Test 2c: Does the Workday session stay alive for at least one hour?
-  - [ ] Add Workday session info to the pop-up button.
+- [ ] Add Workday session info to the pop-up button.
+- [ ] Clear interval when cookie error occurs.
 
 ## References
 
