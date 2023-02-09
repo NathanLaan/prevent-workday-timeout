@@ -33,18 +33,11 @@ let intervalFunction;
 //
 const sleepTime = 20000;
 
-//
-// Increment the specified cookieValue by sleepTime.
-//
-function updateCookie(details, cookieValue) {
-  details.value = (parseInt(cookieValue) + sleepTime).toString();
-  clog("updateCookie: " + details.name + " - " + details.value);
-  chrome.cookies.set(details)
-    .catch(error => cookieError(error));
-  return true; // Needed for async
-}
-
-function cookieError(error) {
+/**
+ * Log and notify the user about the specified error.
+ * @param {Object} error - The error{name, message} to log and notify.
+ */
+function captureError(error) {
   console.log(error);
   chrome.notifications.create("prevent-workday-timeout-cookie-error", {
     type: "basic",
@@ -53,6 +46,17 @@ function cookieError(error) {
     message: error.message,
     priority: 2
   });
+}
+
+//
+// Increment the specified cookieValue by sleepTime.
+//
+function updateCookie(details, cookieValue) {
+  details.value = (parseInt(cookieValue) + sleepTime).toString();
+  clog("updateCookie: " + details.name + " - " + details.value);
+  chrome.cookies.set(details)
+    .catch(error => captureError(error));
+  return true; // Needed for async
 }
 
 //
