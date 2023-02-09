@@ -22,11 +22,10 @@ let intervalFunction;
 const sleepTime = 20000;
 
 /**
- * Stop the interval, log the error, and notify the user about the error.
+ * Log the error, and notify the user about the error.
  * @param {Object} error - The error{name, message} to log and notify.
  */
 function captureError(error) {
-  stopInterval();
   console.log(error);
   chrome.notifications.create("prevent-workday-timeout-cookie-error", {
     type: "basic",
@@ -40,7 +39,13 @@ function captureError(error) {
 //
 // Increment the specified cookieValue by sleepTime.
 //
-function updateCookie(details, cookieValue) {
+/**
+ * 
+ * @param {Object} details - Object containing the cookie URL and name.
+ * @param {Objects} cookie - Object containing the cookie value as a string.
+ * @returns 
+ */
+function updateCookie(details, cookie) {
   details.value = (parseInt(cookieValue) + sleepTime).toString();
   clog("updateCookie: " + details.name + " - " + details.value);
   chrome.cookies.set(details)
@@ -59,10 +64,10 @@ function updateWorkdayCookies() {
   const detailsLUA = { url: wdCookieURL, name: "LastUserActivity" };
   const detailsSTM = { url: wdCookieURL, name: "SessionTimeoutMS" };
   chrome.cookies.get(detailsLUA)
-    .then(cookie => updateCookie(detailsLUA, cookie.value))
+    .then(cookie => updateCookie(detailsLUA, cookie))
     .catch(error => captureError(error));
   chrome.cookies.get(detailsSTM)
-    .then(cookie => updateCookie(detailsSTM, cookie.value))
+    .then(cookie => updateCookie(detailsSTM, cookie))
     .catch(error => captureError(error));
   return true; // Needed for async
 }
