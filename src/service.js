@@ -26,6 +26,7 @@ const sleepTime = 20000;
  * @param {Object} error - The error{name, message} to log and notify.
  */
 function captureError(error) {
+  stopInterval();
   console.log(error);
   chrome.notifications.create("prevent-workday-timeout-cookie-error", {
     type: "basic",
@@ -82,12 +83,14 @@ function startInterval() {
   running = true;
   clog("Starting Prevent-Timeout-Workday.");
   intervalFunction = setInterval(updateWorkdayCookies, sleepTime);
+  setActionIconOn();
 }
 
 function stopInterval() {
   running = false;
   clog("Stopping Prevent-Timeout-Workday.");
   clearInterval(intervalFunction);
+  setActionIconOff();
 }
 
 //
@@ -114,13 +117,11 @@ chrome.runtime.onMessage.addListener((request, sender, callback) => {
       break;
     case 'content-unload':
       clog("Message Received: content-unload URL: " + request.url);
-      setActionIconOff();
       stopInterval();
       callback();
       break;
     case 'update-workday-cookies':
       clog("Message Received: update-workday-cookies URL: " + request.url);
-      setActionIconOn();
       if(!running) {
         startInterval();
       }

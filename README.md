@@ -50,7 +50,8 @@ This extension is not affiliated with [Workday](http://workday.com), or any [Wor
     - [ ] Test 2b: Does the background script start the interval function?
     - [ ] Test 2c: Does the Workday session stay alive for at least one hour?
 - [ ] Add Workday session info to the pop-up button.
-- [ ] Clear interval when cookie error occurs.
+- [x] Clear interval when cookie error occurs.
+  - [ ] Test 1: Login to Workday. Let the extension run for a while. Delete the cookie without closing the Workday website. An error should be generated, the interval should be stopped, the error notification should be displayed, and the extension action icon should change to .
 
 ## References
 
