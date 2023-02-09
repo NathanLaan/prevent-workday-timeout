@@ -1,21 +1,9 @@
-//
-// Pre-pad num < 10 with a "0".
-//
-function pad(num) {
-  return (num<10 ? "0" : "") + num;
-}
-//
-// Return formatted timestamp: hh:mm:ss.
-//
-function getTimeFormatted() {
-  const d = new Date();
-  return `${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
-}
-//
-// Console log with timestamp and message.
-//
+/**
+ * Log the message to the console with timestamp.
+ * @param {String} m - The message to be logged.
+ */
 function clog(m) {
-  console.log(getTimeFormatted() + " PWT " + m);
+  console.log(`${new Date().toISOString()} PWT ${m}`);
 } 
 
 //
@@ -71,10 +59,10 @@ function updateWorkdayCookies() {
   const detailsSTM = { url: wdCookieURL, name: "SessionTimeoutMS" };
   chrome.cookies.get(detailsLUA)
     .then(cookie => updateCookie(detailsLUA, cookie.value))
-    .catch(error => cookieError(error));
+    .catch(error => captureError(error));
   chrome.cookies.get(detailsSTM)
     .then(cookie => updateCookie(detailsSTM, cookie.value))
-    .catch(error => cookieError(error));
+    .catch(error => captureError(error));
   return true; // Needed for async
 }
 
@@ -103,7 +91,8 @@ function stopInterval() {
 }
 
 //
-// Client is using Promise instead of callback, but callback is still defined. 
+// Content script is using Promise instead of callback, but 
+// the callback (and sender) parameters are still defined. 
 //
 chrome.runtime.onMessage.addListener((request, sender, callback) => {
   switch (request.message) {
