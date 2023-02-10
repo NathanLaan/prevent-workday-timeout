@@ -1,22 +1,10 @@
-//
-// Pre-pad num < 10 with a "0".
-//
-function pad(num) {
-  return (num<10 ? "0" : "") + num;
-}
-//
-// Return formatted timestamp: hh:mm:ss.
-//
-function getTimeFormatted() {
-  const d = new Date();
-  return `${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
-}
-//
-// Console log with timestamp and message.
-//
+/**
+ * Log the message to the console with timestamp.
+ * @param {String} m - The message to be logged.
+ */
 function clog(m) {
-  console.log(getTimeFormatted() + " PWT " + m);
-}
+  console.log(`${new Date().toISOString()} PWT ${m}`);
+} 
 
 
 //
@@ -24,7 +12,7 @@ function clog(m) {
 //
 let running = false;
 let intervalFunction;
-const sleepTime = 10000;
+const sleepTime = 25000;
 
 
 //
