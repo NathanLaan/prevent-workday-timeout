@@ -50,14 +50,15 @@ This extension is not affiliated with [Workday](http://workday.com), or any [Wor
     - [ ] Test 2b: Does the background script start the interval function?
     - [ ] Test 2c: Does the Workday session stay alive for at least one hour?
 - [ ] Add Workday session info to the pop-up button.
-- [ ] Clear service interval and content interval when cookie error occurs in the service.
+- [x] Clear service interval when cookie error occurs in the service.
+- [ ] Clear content interval when cookie error occurs in the service.
   - [ ] Test 1: Login to Workday. Let the extension run for a while. Delete the cookie without closing the Workday website. An error should be generated, the interval should be stopped, the error notification should be displayed, and the extension action icon should change to red.
 - [ ] Issue: The content-unload message is received, and the `Stopping Prevent-Timeout-Workday` function is triggered, but the service interval continues running.
   - `2023-02-09T19:07:20.981Z PWT Message Received: content-unload URL: ...`
   - `2023-02-09T19:07:20.982Z PWT Stopping Prevent-Timeout-Workday.`
   - `2023-02-09T19:07:21.391Z PWT updateCookie: LastUserActivity - ...`
   - `2023-02-09T19:07:21.391Z PWT updateCookie: SessionTimeoutMS - ...`
-
+- [ ] Add cookie info to popup.
 
 ## References
 

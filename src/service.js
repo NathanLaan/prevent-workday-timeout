@@ -46,10 +46,17 @@ function captureError(error) {
  * @returns 
  */
 function updateCookie(details, cookie) {
-  details.value = (parseInt(cookieValue) + sleepTime).toString();
-  clog("updateCookie: " + details.name + " - " + details.value);
-  chrome.cookies.set(details)
-    .catch(error => captureError(error));
+  //
+  // Test if cookie is valid...
+  //
+  if(typeof cookie === "object" && cookie !== null && cookie.value) {
+    details.value = (parseInt(cookie.value) + sleepTime).toString();
+    clog("updateCookie: " + details.name + " - " + details.value);
+    chrome.cookies.set(details)
+      .catch(error => captureError(error));
+  } else {
+    stopInterval();
+  }
   return true; // Needed for async
 }
 
@@ -57,6 +64,7 @@ function updateCookie(details, cookie) {
 // Modify cookies to prevent session timeout. Function is run on interval timer.
 //
 function updateWorkdayCookies() {
+  clog("intervalFunction - " + intervalFunction);
   //
   // Constants are scoped here and not globally, because 
   // updateCookie() adds a 'value' field to details.
@@ -86,14 +94,15 @@ function setActionIconOff() {
 
 function startInterval() {
   running = true;
-  clog("Starting Prevent-Timeout-Workday.");
   intervalFunction = setInterval(updateWorkdayCookies, sleepTime);
   setActionIconOn();
+  clog("Starting Prevent-Timeout-Workday - " + intervalFunction);
 }
 
 function stopInterval() {
   running = false;
-  clog("Stopping Prevent-Timeout-Workday.");
+  //clog("Stopping Prevent-Timeout-Workday.");
+  clog("Stopping Prevent-Timeout-Workday - " + intervalFunction);
   clearInterval(intervalFunction);
   setActionIconOff();
 }
@@ -128,6 +137,7 @@ chrome.runtime.onMessage.addListener((request, sender, callback) => {
     case 'update-workday-cookies':
       clog("Message Received: update-workday-cookies URL: " + request.url);
       if(!running) {
+        clog("Message Received: update-workday-cookies STARTING");
         startInterval();
       }
       break;
