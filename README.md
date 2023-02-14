@@ -59,6 +59,12 @@ This extension is not affiliated with [Workday](http://workday.com), or any [Wor
   - `2023-02-09T19:07:21.391Z PWT updateCookie: LastUserActivity - ...`
   - `2023-02-09T19:07:21.391Z PWT updateCookie: SessionTimeoutMS - ...`
 - [ ] Add cookie info to popup.
+- [ ] v1.1.0
+  - [ ] Add support for cookies on domains other than WD5.
+  - [*] *.workday.com Host Permissions.
+  - [ ] Detect cookies using chrome.cookies.onChanged
+    - [chrome.cookies.onChanged](https://developer.chrome.com/docs/extensions/reference/cookies/#event-onChanged)
+    - [chrome.cookies.OnChangedCause](https://developer.chrome.com/docs/extensions/reference/cookies/#type-OnChangedCause)
 
 ## References
 
