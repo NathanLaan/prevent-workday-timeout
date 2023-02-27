@@ -9,7 +9,10 @@ function clog(m) {
 //
 // Globals
 //
-const wdCookieURL = "https://wd5.myworkday.com";
+//const wdCookieURL = "https://wd5.myworkday.com";
+const wdCookieURL = "myworkday.com";
+const LUA = "LastUserActivity";
+const STM = "SessionTimeoutMS";
 const icon_red = "/images/changes-red-128.png";
 const icon_blue = "/images/changes-blue-128.png";
 const icon_black = "/images/changes-black-128.png";
@@ -36,23 +39,22 @@ function captureError(error) {
   });
 }
 
-//
-// Increment the specified cookieValue by sleepTime.
-//
 /**
- * 
- * @param {Object} details - Object containing the cookie URL and name.
- * @param {Objects} cookie - Object containing the cookie value as a string.
+ * Increment the specified cookie value by sleepTime.
+ * @param {Object} cookie - The cookie{domain, name, value} to be updated.
  * @returns 
  */
-function updateCookie(details, cookie) {
+function updateCookie(cookie) {
   //
   // Test if cookie is valid...
   //
   if(typeof cookie === "object" && cookie !== null && cookie.value) {
-    details.value = (parseInt(cookie.value) + sleepTime).toString();
-    clog("updateCookie: " + details.name + " - " + details.value);
-    chrome.cookies.set(details)
+    let newCookie = {
+      url: (cookie.domain.indexOf('://') === -1) ? 'https://' + cookie.domain : cookie.domain, 
+      name: cookie.name,
+      value: (parseInt(cookie.value) + sleepTime).toString()
+    }
+    chrome.cookies.set(newCookie)
       .catch(error => captureError(error));
   } else {
     stopInterval();
@@ -64,19 +66,19 @@ function updateCookie(details, cookie) {
 // Modify cookies to prevent session timeout. Function is run on interval timer.
 //
 function updateWorkdayCookies() {
-  clog("intervalFunction - " + intervalFunction);
-  //
-  // Constants are scoped here and not globally, because 
-  // updateCookie() adds a 'value' field to details.
-  //
-  const detailsLUA = { url: wdCookieURL, name: "LastUserActivity" };
-  const detailsSTM = { url: wdCookieURL, name: "SessionTimeoutMS" };
-  chrome.cookies.get(detailsLUA)
-    .then(cookie => updateCookie(detailsLUA, cookie))
-    .catch(error => captureError(error));
-  chrome.cookies.get(detailsSTM)
-    .then(cookie => updateCookie(detailsSTM, cookie))
-    .catch(error => captureError(error));
+  //clog("intervalFunction - " + intervalFunction);
+  chrome.cookies.getAll({}, function (cookieList) {
+    cookieList.forEach(function (cookie) {
+      switch(cookie.name) {
+        case LUA:
+          updateCookie(cookie);
+          break;
+        case STM:
+          updateCookie(cookie);
+          break;
+      }
+    });
+  });
   return true; // Needed for async
 }
 
