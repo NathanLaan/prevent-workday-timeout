@@ -7,22 +7,27 @@ function clog(m) {
 } 
 
 //
-// Globals
+// CONSTANTS: Using Google Style Guide for naming conventions.
+// https://google.github.io/styleguide/javascriptguide.xml
 //
 //const wdCookieURL = "https://wd5.myworkday.com";
-const wdCookieURL = "myworkday.com";
+const COOKIE_DOMAIN = "myworkday.com";
 const LUA = "LastUserActivity";
 const STM = "SessionTimeoutMS";
-const icon_red = "/images/changes-red-128.png";
-const icon_blue = "/images/changes-blue-128.png";
-const icon_black = "/images/changes-black-128.png";
-let running = false;
-let intervalFunction;
+const ICON_RED = "/images/changes-red-128.png";
+const ICON_BLUE = "/images/changes-blue-128.png";
+const ICON_BLACK = "/images/changes-black-128.png";
 //
-// Idle is 30s: 
+// Sleep time needs to be <30 because extension idle time is 30s: 
 // https://developer.chrome.com/docs/extensions/mv3/service_workers/
 //
-const sleepTime = 20000;
+const SLEEP_TIME = 20000;
+
+//
+// GLOBALS
+//
+let running = false;
+let intervalFunction;
 
 /**
  * Log the error, and notify the user about the error.
@@ -32,7 +37,7 @@ function captureError(error) {
   console.log(error);
   chrome.notifications.create("prevent-workday-timeout-cookie-error", {
     type: "basic",
-    iconUrl: icon_red,
+    iconUrl: ICON_RED,
     title: "PWT: Error",
     message: error.message,
     priority: 2
@@ -40,7 +45,7 @@ function captureError(error) {
 }
 
 /**
- * Increment the specified cookie value by sleepTime.
+ * Increment the specified cookie value by SLEEP_TIME.
  * @param {Object} cookie - The cookie{domain, name, value} to be updated.
  * @returns 
  */
@@ -53,7 +58,7 @@ function updateCookie(cookie) {
       //domain: cookie.domain, // BUG: chrome prepends a period to the domain
       url: (cookie.domain.indexOf('://') === -1) ? 'https://' + cookie.domain : cookie.domain, 
       name: cookie.name,
-      value: (parseInt(cookie.value) + sleepTime).toString(),
+      value: (parseInt(cookie.value) + SLEEP_TIME).toString(),
       secure: true
     }
     chrome.cookies.set(newCookie)
@@ -70,7 +75,7 @@ function updateCookie(cookie) {
 //
 function updateWorkdayCookies() {
   clog("updateWorkdayCookies: intervalFunction - " + intervalFunction);
-  chrome.cookies.getAll({domain: wdCookieURL}, function (cookieList) {
+  chrome.cookies.getAll({domain: COOKIE_DOMAIN}, function (cookieList) {
     cookieList.forEach(function (cookie) {
       switch(cookie.name) {
         case LUA:
@@ -87,19 +92,19 @@ function updateWorkdayCookies() {
 
 function setActionIconOn() {
   chrome.action.setTitle({ title: "Prevent-Workday-Timeout RUNNING"});
-  chrome.action.setIcon({ path: icon_blue })
+  chrome.action.setIcon({ path: ICON_BLUE })
     .catch(error => console.log(error));
 }
 
 function setActionIconOff() {
   chrome.action.setTitle({ title: "Prevent-Workday-Timeout STOPPED" });
-  chrome.action.setIcon({ path: icon_red })
+  chrome.action.setIcon({ path: ICON_RED })
     .catch(error => console.log(error));
 }
 
 function startInterval() {
   running = true;
-  intervalFunction = setInterval(updateWorkdayCookies, sleepTime);
+  intervalFunction = setInterval(updateWorkdayCookies, SLEEP_TIME);
   setActionIconOn();
   clog("Starting Prevent-Timeout-Workday - " + intervalFunction);
 }
@@ -125,7 +130,7 @@ chrome.runtime.onMessage.addListener((request, sender, callback) => {
     case 'content-load':
       chrome.notifications.create("prevent-workday-timeout-content-load", {
         type: "basic",
-        iconUrl: icon_blue,
+        iconUrl: ICON_BLUE,
         title: "Prevent-Workday-Timeout",
         message: "Workday website loaded",
         priority: 2
