@@ -62,7 +62,7 @@ function updateCookie(cookie) {
       secure: true
     }
     chrome.cookies.set(newCookie)
-      .then(c => clog("Cookie Updated: " + newCookie.name)) // debugging only
+      //.then(c => clog("Cookie Updated: " + newCookie.name + " - " +  + newCookie.value)) // debugging only
       .catch(error => captureError(error));
   } else {
     stopInterval();
