@@ -50,11 +50,14 @@ function updateCookie(cookie) {
   //
   if(typeof cookie === "object" && cookie !== null && cookie.value) {
     let newCookie = {
+      //domain: cookie.domain, // BUG: chrome prepends a period to the domain
       url: (cookie.domain.indexOf('://') === -1) ? 'https://' + cookie.domain : cookie.domain, 
       name: cookie.name,
-      value: (parseInt(cookie.value) + sleepTime).toString()
+      value: (parseInt(cookie.value) + sleepTime).toString(),
+      secure: true
     }
     chrome.cookies.set(newCookie)
+      .then(c => clog("Cookie Updated: " + newCookie.name)) // debugging only
       .catch(error => captureError(error));
   } else {
     stopInterval();
@@ -66,8 +69,8 @@ function updateCookie(cookie) {
 // Modify cookies to prevent session timeout. Function is run on interval timer.
 //
 function updateWorkdayCookies() {
-  //clog("intervalFunction - " + intervalFunction);
-  chrome.cookies.getAll({}, function (cookieList) {
+  clog("updateWorkdayCookies: intervalFunction - " + intervalFunction);
+  chrome.cookies.getAll({domain: wdCookieURL}, function (cookieList) {
     cookieList.forEach(function (cookie) {
       switch(cookie.name) {
         case LUA:
