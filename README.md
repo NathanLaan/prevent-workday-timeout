@@ -1,5 +1,10 @@
 # ![Prevent-Workday-Timeout Icon](/src/images/changes-black-32.png) Prevent-Workday-Timeout
 
+[![Chrome Web Store Version](https://img.shields.io/chrome-web-store/v/mcliokdljpofldmihgimfcnkmgifckki.svg?style=flat-square)](https://chrome.google.com/webstore/detail/prevent-workday-timeout/mcliokdljpofldmihgimfcnkmgifckki)
+[![Chrome Web Store Downloads](https://img.shields.io/chrome-web-store/d/mcliokdljpofldmihgimfcnkmgifckki.svg?style=flat-square)](https://chrome.google.com/webstore/detail/prevent-workday-timeout/mcliokdljpofldmihgimfcnkmgifckki)
+[![Chrome Web Store Rating](https://img.shields.io/chrome-web-store/rating/mcliokdljpofldmihgimfcnkmgifckki.svg?style=flat-square)](https://chrome.google.com/webstore/detail/prevent-workday-timeout/mcliokdljpofldmihgimfcnkmgifckki)
+[![Chrome Web Store Rating Count](https://img.shields.io/chrome-web-store/rating-count/mcliokdljpofldmihgimfcnkmgifckki.svg?style=flat-square)](https://chrome.google.com/webstore/detail/prevent-workday-timeout/mcliokdljpofldmihgimfcnkmgifckki/reviews)
+
 A simple Google Chrome extension to prevent session timeouts on the Workday website.
 
 By default, the Workday session is configured to timeout within ten minutes. Although the Workday website has a session timeout warning message, the Workday user interface includes a number of overlay windows that frequently hide this warning message.
