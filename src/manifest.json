@@ -9,7 +9,7 @@
   "host_permissions": [
     "https://*.myworkday.com/"
   ],
-  "permissions": ["cookies", "commands", "notifications"],
+  "permissions": ["cookies", "notifications"],
   "commands": {
     "_execute_action": {
 			"suggested_key": {
