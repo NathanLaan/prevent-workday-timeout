@@ -1,0 +1,41 @@
+{
+  "name": "Prevent-Workday-Timeout",
+  "description": "Prevent session timeouts on the Workday website.",
+  "version": "1.1.2",
+  "manifest_version": 3,
+  "background": {
+    "scripts": ["service.js"]
+  },
+  "host_permissions": [
+    "https://*.myworkday.com/"
+  ],
+  "permissions": ["cookies", "notifications"],
+  "commands": {
+    "_execute_action": {
+			"suggested_key": {
+        "windows": "Ctrl+Shift+P",
+        "mac": "Command+Shift+P",
+        "chromeos": "Ctrl+Shift+P",
+        "linux": "Ctrl+Shift+P"
+			},
+			"description": "Prevent-Workday-Timeout"
+		}
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://*.myworkday.com/*"],
+      "js": ["content.js"]
+    }
+  ],
+  "action": {
+    "default_title": "Prevent-Workday-Timeout",
+    "default_icon": "/images/changes-black-128.png",
+    "default_popup": "popup.html"
+  },
+  "icons": {
+    "32": "/images/changes-black-32.png",
+    "128": "/images/changes-black-128.png",
+    "256": "/images/changes-black-256.png",
+    "512": "/images/changes-black-512.png"
+  }
+}
