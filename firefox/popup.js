@@ -1,3 +1,10 @@
+//
+// Chrome supports only chrome.api
+// Firefox supports browser.api and chrome.api
+// Edge supports only browser.api
+//
+browser = browser || chrome;
+
 msg('popup');
 
 /**
@@ -5,5 +12,5 @@ msg('popup');
  * @param {string} m  Message to log.
  */
 function msg(m) {
-  chrome.runtime.sendMessage({message: m});
+  browser.runtime.sendMessage({message: m});
 }

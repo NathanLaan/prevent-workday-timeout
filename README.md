@@ -71,6 +71,12 @@ This extension is not affiliated with [Workday](http://workday.com), or any [Wor
     - [chrome.cookies.OnChangedCause](https://developer.chrome.com/docs/extensions/reference/cookies/#type-OnChangedCause)
     - [ ] Add cookie info to popup.
 
+## Packaging
+
+``` bash
+zip -r addon.zip *
+```
+
 ## References
 
 - Icons by [Radhe Icon - Flaticon](https://www.flaticon.com/free-icons/changes)

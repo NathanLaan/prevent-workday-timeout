@@ -1,3 +1,11 @@
+//
+// Chrome supports only chrome.api
+// Firefox supports browser.api and chrome.api
+// Edge supports only browser.api
+//
+browser = browser || chrome;
+
+
 /**
  * Log the message to the console with timestamp.
  * @param {String} m - The message to be logged.
@@ -21,7 +29,7 @@ const sleepTime = 25000;
 function preventWorkdayTimeout() {
   if(running) {
     // update-workday-cookies
-    chrome.runtime.sendMessage({message: 'update-workday-cookies', url: location.href})
+    browser.runtime.sendMessage({message: 'update-workday-cookies', url: location.href})
       .then(clog("Message Sent: update-workday-cookies"))
       .catch(error => console.log(error));
     }
@@ -53,7 +61,7 @@ function stopInterval() {
 
 window.addEventListener("unload", (event) => {
   clog("UNLOAD");
-  chrome.runtime.sendMessage({message: 'content-unload', url: location.href})
+  browser.runtime.sendMessage({message: 'content-unload', url: location.href})
     .then(clog("Background Message Sent Successfully"))
     .catch(error => console.log(error));
   stopInterval();
@@ -62,7 +70,7 @@ window.addEventListener("unload", (event) => {
 window.addEventListener("load", (event) => {
   clog("Content Script Loaded");
   
-  chrome.runtime.sendMessage({message: 'content-load', url: location.href})
+  browser.runtime.sendMessage({message: 'content-load', url: location.href})
     .then(clog("Background Message Sent Successfully"))
     .catch(error => console.log(error));
 

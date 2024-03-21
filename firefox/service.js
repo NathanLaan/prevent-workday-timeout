@@ -1,3 +1,22 @@
+//
+// Chrome supports only chrome.api
+// Firefox supports browser.api and chrome.api
+// Edge supports only browser.api
+//
+browser = browser || chrome;
+
+//
+// https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/background#browser_support
+//
+if (typeof browser == "undefined") {
+  // Chrome does not support the browser namespace yet.
+  globalThis.browser = chrome;
+}
+browser.runtime.onInstalled.addListener(() => {
+  //browser.tabs.create({ url: "http://example.com/firstrun.html" });
+});
+
+
 /**
  * Log the message to the console with timestamp.
  * @param {String} m - The message to be logged.
@@ -35,7 +54,7 @@ let intervalFunction;
  */
 function captureError(error) {
   console.log(error);
-  chrome.notifications.create("prevent-workday-timeout-cookie-error", {
+  browser.notifications.create("prevent-workday-timeout-cookie-error", {
     type: "basic",
     iconUrl: ICON_RED,
     title: "PWT: Error",
@@ -61,7 +80,7 @@ function updateCookie(cookie) {
       value: (parseInt(cookie.value) + SLEEP_TIME).toString(),
       secure: true
     }
-    chrome.cookies.set(newCookie)
+    browser.cookies.set(newCookie)
       //.then(c => clog("Cookie Updated: " + newCookie.name + " - " +  + newCookie.value)) // debugging only
       .catch(error => captureError(error));
   } else {
@@ -75,7 +94,7 @@ function updateCookie(cookie) {
 //
 function updateWorkdayCookies() {
   clog("updateWorkdayCookies: intervalFunction - " + intervalFunction);
-  chrome.cookies.getAll({domain: COOKIE_DOMAIN}, function (cookieList) {
+  browser.cookies.getAll({domain: COOKIE_DOMAIN}, function (cookieList) {
     cookieList.forEach(function (cookie) {
       switch(cookie.name) {
         case LUA:
@@ -91,14 +110,14 @@ function updateWorkdayCookies() {
 }
 
 function setActionIconOn() {
-  chrome.action.setTitle({ title: "Prevent-Workday-Timeout RUNNING"});
-  chrome.action.setIcon({ path: ICON_BLUE })
+  browser.action.setTitle({ title: "Prevent-Workday-Timeout RUNNING"});
+  browser.action.setIcon({ path: ICON_BLUE })
     .catch(error => console.log(error));
 }
 
 function setActionIconOff() {
-  chrome.action.setTitle({ title: "Prevent-Workday-Timeout STOPPED" });
-  chrome.action.setIcon({ path: ICON_RED })
+  browser.action.setTitle({ title: "Prevent-Workday-Timeout STOPPED" });
+  browser.action.setIcon({ path: ICON_RED })
     .catch(error => console.log(error));
 }
 
@@ -121,14 +140,14 @@ function stopInterval() {
 // Content script is using Promise instead of callback, but 
 // the callback (and sender) parameters are still defined. 
 //
-chrome.runtime.onMessage.addListener((request, sender, callback) => {
+browser.runtime.onMessage.addListener((request, sender, callback) => {
   switch (request.message) {
     case 'prevent-timeout':
       clog("Message Received: prevent-timeout URL: " + request.url);
       callback();
       break;
     case 'content-load':
-      chrome.notifications.create("prevent-workday-timeout-content-load", {
+      browser.notifications.create("prevent-workday-timeout-content-load", {
         type: "basic",
         iconUrl: ICON_BLUE,
         title: "Prevent-Workday-Timeout",
