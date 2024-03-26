@@ -74,7 +74,7 @@ This extension is not affiliated with [Workday](http://workday.com), or any [Wor
 ## Packaging
 
 ``` bash
-zip -r addon.zip *
+$ zip -r addon.zip *
 ```
 
 ## Firefox Extension Development
