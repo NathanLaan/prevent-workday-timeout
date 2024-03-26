@@ -68,13 +68,13 @@ This extension is not affiliated with [Workday](http://workday.com), or any [Wor
   - [x] *.workday.com Host Permissions.
   - [ ] Detect cookies using chrome.cookies.onChanged
     - [chrome.cookies.onChanged](https://developer.chrome.com/docs/extensions/reference/cookies/#event-onChanged)
-    - [chrome.cookies.OnChangedCause](https://developer.chrome.com/docs/extensions/reference/cookies/#type-OnChangedCause)
+    - [chrome.cookies.OnChangedCause](https://developer.chrome.com/docs/extensions/reference/cookies/#type-OnChangedCause```bash)
     - [ ] Add cookie info to popup.
 
 ## Packaging
 
-``` bash
-$ zip -r addon.zip *
+```shell
+zip -r addon.zip *
 ```
 
 ## Firefox Extension Development
