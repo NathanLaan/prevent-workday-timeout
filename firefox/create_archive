@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# find and delete ZIP files:
+#find . -name "*.zip" -type f -delete
+
+# zip with date and time, ignore this script and ZIP files:
+zip -r "pwt-$(date '+%Y%m%d-%H%M').zip" * -x "create_archive" "*.zip" @
