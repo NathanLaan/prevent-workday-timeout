@@ -77,6 +77,12 @@ This extension is not affiliated with [Workday](http://workday.com), or any [Wor
 zip -r addon.zip *
 ```
 
+## Firefox Extension Development
+
+- [Running local extensions](https://firefox-source-docs.mozilla.org/devtools-user/about_colon_debugging/index.html)
+- [about:debugging page to add local extension](about:debugging)
+- [Mozilla Web-Ext tool to build, run, and test WebExtensions](https://github.com/mozilla/web-ext)
+
 ## References
 
 - Icons by [Radhe Icon - Flaticon](https://www.flaticon.com/free-icons/changes)
