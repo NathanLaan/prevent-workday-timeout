@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+*{
+  list-style: none;
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-width:300px;
+  width: 400px;
+  height: 300px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1rem;
+}
+
+.main {
+  background: #424242;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow-x:hidden;
+  overflow-y:scroll;
+}
+
+.main ul li div {
+  background: #4d4d4d;
+  color: #fff;
+  background: #F0F0C9;
+  color: #000;
+  display: block;
+  padding: 5px 20px;
+  border-bottom: 1px solid #fff;
+  position: relative;
+  width: 100%;
+  white-space: nowrap;
+}
+
+.sidebar ul li .search {
+  background: #777777;
+  background: #124E78 !important;
+  color: #fff;
+  font-weight: bold;
+}
+
+.main ul li a {
+  display: block;
+  padding: 5px 40px;
+  border-bottom: 1px solid #fff;
+  position: relative;
+  width: 100%;
+  color: #fff;
+  white-space: nowrap;
+}
+
+.main ul li a:hover {
+  background: #585858;
+  /*transition: background-color 0.5s ease;*/
+}
+
+div button {
+  width: 25%;
+  padding: 0px;
+  margin: 10px 0px 0px 15px;
+  box-sizing: border-box;
+  font-size: 1.5em;
+}
