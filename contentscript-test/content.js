@@ -3,9 +3,7 @@
 // Firefox supports browser.api and chrome.api
 // Edge supports only browser.api
 //
-//browser = browser || chrome;
-
-alert("hi!");
+browser = browser || chrome;
 
 console.log("PWT-Firefox-Test Loading");
 var button = document.createElement("button");
