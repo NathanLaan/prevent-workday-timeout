@@ -1,9 +1,10 @@
 {
   "name": "ContentScriptTestExtension",
-  "version": "0.1",
-  "manifest_version": 3,
+  "version": "0.2",
+  "manifest_version": 2,
   "background": {
-    "scripts": ["service.js"]
+    "scripts": ["service.js"],
+    "persistent": true
   },
   "content_scripts": [{
     "matches": ["*://*.example.com/*"],
